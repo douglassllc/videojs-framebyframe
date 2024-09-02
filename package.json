@@ -1,6 +1,6 @@
 {
   "name": "@douglassllc/videojs-framebyframe",
-  "version": "1.1.1",
+  "version": "1.2.0",
   "description": "video.js plugin that allows users to step frame-by-frame through a video.",
   "main": "videojs.framebyframe.js",
   "repository": {
@@ -8,7 +8,10 @@
     "url": "git+https://github.com/douglassllc/videojs-framebyframe.git"
   },
   "scripts": {
-    "test": "echo No tests yet!"
+    "release": "standard-version --no-verify --release-as",
+    "release:major": "standard-version --no-verify --release-as major",
+    "release:minor": "standard-version --no-verify --release-as minor",
+    "release:patch": "standard-version --no-verify --release-as patch"
   },
   "keywords": [
     "video",
@@ -24,7 +27,8 @@
     "grunt-contrib-jshint": ">=0.10.0",
     "grunt-contrib-uglify": ">=0.5.0",
     "grunt-contrib-watch": ">=0.6.1",
-    "grunt-jscs": "^2.7.0"
+    "grunt-jscs": "^2.7.0",
+    "standard-version": "^9.5.0"
   },
   "author": "Douglass E Hock <doug@douglassllc.com> (http://douglassllc.com)",
   "license": "MIT",
