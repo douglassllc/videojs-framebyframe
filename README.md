@@ -16,6 +16,7 @@ this plugin works perfectly for you.
 - Updated code causing warnings for deprecated methods .plugin -> .registerPlugin
 - Appends buttons after playToggle
 - Added .css to package
+- Updated code to migrate from v7 to v8 of videojs. Replace extend() call. (https://videojs.com/guides/videojs-7-to-8/)
 
 ## Installation
 

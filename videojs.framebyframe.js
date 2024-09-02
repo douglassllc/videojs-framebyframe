@@ -1,23 +1,23 @@
 // videojs-framebyframe-plugin
 
-var VjsButton = videojs.getComponent('Button');
-var FBFButton = videojs.extend(VjsButton, {
-    constructor: function(player, options) {
-        VjsButton.call(this, player, options);
-        this.player = player;
-        this.frameTime = 1/options.fps;
-        this.step_size = options.value;
-        this.on('click', this.onClick);
-    },
+const Button = videojs.getComponent('Button');
 
-    onClick: function() {
-        // Start by pausing the player
-        this.player.pause();
-        // Calculate movement distance
-        var dist = this.frameTime * this.step_size;
-        this.player.currentTime(this.player.currentTime() + dist);
-    },
-});
+class FrameByFrameButton extends Button {
+  constructor(player, options) {
+    super(player, options);
+    this.player = player;
+    this.frameTime = 1/options.fps;
+    this.step_size = options.value;
+  }
+
+  handleClick() {
+    // Start by pausing the player
+    this.player.pause();
+    // Calculate movement distance
+    var dist = this.frameTime * this.step_size;
+    this.player.currentTime(this.player.currentTime() + dist);
+  }
+}
 
 function framebyframe(options) {
     var player = this,
@@ -30,7 +30,7 @@ function framebyframe(options) {
         //console.log('fsc', fsc);
         options.steps.forEach(function(opt) {
             var b = player.controlBar.addChild(
-                new FBFButton(player, {
+                new FrameByFrameButton(player, {
                     el: videojs.dom.createEl(
                         'button',
                         {
@@ -55,7 +55,9 @@ function framebyframe(options) {
     });
 }
 
+videojs.registerComponent('FrameByFrameButton', FrameByFrameButton);
+
 // Cross-compatibility for Video.js 5 and 6.
 var registerPlugin = videojs.registerPlugin || videojs.plugin;
 
-registerPlugin('framebyframe', framebyframe);
+videojs.registerPlugin('framebyframe', framebyframe);
